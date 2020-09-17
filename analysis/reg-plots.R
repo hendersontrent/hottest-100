@@ -26,7 +26,7 @@ p <- the_data %>%
   mutate(fb_likes = log(fb_likes),
          plays = log(plays)) %>%
   ggplot(aes(x = fb_likes, y = plays)) +
-  geom_smooth(formula = y ~ x, method = "lm", colour = "#05445E", fill = "steelblue2",
+  geom_smooth(formula = y ~ s(x), method = "gam", colour = "#05445E", fill = "steelblue2",
               alpha = 0.4) +
   geom_point(aes(colour = australian), size = 2.5) +
   labs(title = "Facebook fanbase size and Spotify plays for 2019 Triple J Hottest 100 songs",
@@ -49,7 +49,7 @@ p1 <- the_data %>%
   mutate(fb_likes = log(fb_likes),
          plays = log(plays)) %>%
   ggplot(aes(x = fb_likes, y = plays)) +
-  geom_smooth(aes(group = australian, fill = australian, colour = australian), formula = y ~ x, method = "lm", 
+  geom_smooth(aes(group = australian, fill = australian, colour = australian), formula = y ~ s(x), method = "gam", 
               alpha = 0.4) +
   geom_point(size = 2.5, aes(colour = australian)) +
   labs(title = "Facebook fanbase size and Spotify plays for 2019 Triple J Hottest 100 songs",

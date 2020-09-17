@@ -1,6 +1,6 @@
 #-------------------------------------------
-# This script sets out to load all 
-# things required for the project
+# This script sets out to produce a Latent
+# Profile Analysis of Hottest 100 data
 #
 # NOTE: This script requires setup.R to
 # have been run first

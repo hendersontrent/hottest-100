@@ -18,6 +18,7 @@ library(ggpubr)
 library(mgcv)
 library(sjPlot)
 library(lubridate)
+library(tidyLPA)
 
 # Turn off scientific notation
 

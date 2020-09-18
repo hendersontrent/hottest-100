@@ -8,7 +8,6 @@ data/*.xlsx
 data/*.csv
 
 *.pdf
-*.png
 *.pptx
 *.rda
 *.rds

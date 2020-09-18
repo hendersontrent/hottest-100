@@ -56,6 +56,40 @@ summary(mod1)[["summary"]][c(paste0("beta[",1:4, "]"), "alpha"),]
 
 ext_fit <- as.data.frame(extract(mod1))
 
+# Make plot
+
+p <- ext_fit %>%
+  dplyr::select(c(1:5)) %>%
+  gather(key = metric, value = value, 1:5) %>%
+  group_by(metric) %>%
+  summarise(mean = mean(value),
+            upper_975 = quantile(value, 0.975),
+            lower_025 = quantile(value, 0.025),
+            upper_900 = quantile(value, 0.900),
+            lower_100 = quantile(value, 0.100)) %>%
+  ungroup() %>%
+  mutate(metric = case_when(
+    metric == "beta.1"  ~ "Facebook Likes",
+    metric == "beta.2"  ~ "Spotify Plays",
+    metric == "beta.3"  ~ "Hottest 100 Rank",
+    metric == "beta.4"  ~ "Days Since Release",
+    metric == "alpha"   ~ "Alpha")) %>%
+  ggplot() +
+  geom_segment(aes(x = lower_025, y = metric, xend = upper_975, yend = metric), 
+               size = 3, colour = "steelblue2", alpha = 0.5) +
+  geom_segment(aes(x = lower_100, y = metric, xend = upper_900, yend = metric), 
+               size = 5, colour = "steelblue2", alpha = 0.8) +
+  geom_point(aes(x = mean, y = metric), size = 5, colour = "#05445E") +
+  labs(title = "Bayesian logit model outputs predicting artist nationality",
+       subtitle = "Point = Mean Estimate | Dark band = 80% Credible Interval |\nLight band = 95% Credible Interval.",
+       x = "Posterior Probability Value",
+       y = "Metric",
+       caption = "Analysis: Orbisant Analytics.") +
+  theme_bw() +
+  theme(legend.position = "bottom",
+        panel.grid.minor = element_blank())
+print(p)
+
 #---------------------EXTRACT PRIORS FOR FUTURE MODEL --------------
 
 alpha_posterior <- ext_fit$alpha

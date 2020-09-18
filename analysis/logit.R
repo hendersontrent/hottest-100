@@ -38,7 +38,8 @@ p <- df %>%
               alpha = 0.4) +
   labs(title = "Logit plots of various metrics predicting artist nationality",
        x = "Value (Centred & Standardised)",
-       y = "Artist Nationality (0 = International, 1 = Australian)") +
+       y = "Artist Nationality (0 = International, 1 = Australian)",
+       caption = "Analysis: Orbisant Analytics.") +
   theme_bw() +
   theme(legend.position = "bottom",
         panel.grid.minor = element_blank(),

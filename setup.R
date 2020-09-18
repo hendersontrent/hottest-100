@@ -19,6 +19,8 @@ library(mgcv)
 library(sjPlot)
 library(lubridate)
 library(tidyLPA)
+library(rstan)
+library(bayesplot)
 
 # Turn off scientific notation
 

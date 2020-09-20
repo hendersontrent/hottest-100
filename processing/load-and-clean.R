@@ -24,6 +24,9 @@ timespan_bucket <- timespan/4
 
 the_data <- the_raw_data %>%
   mutate(song_released = ymd(song_released)) %>%
+  mutate(song_released = case_when(
+         the_rank == 93 ~ ymd("2018-12-24"),
+         TRUE           ~ song_released)) %>% # Recode incorrect Post Malone release
   mutate(days_released = votes_open - song_released) %>%
   mutate(days_released = as.numeric(days_released)) %>%
   mutate(time_bucket = case_when(

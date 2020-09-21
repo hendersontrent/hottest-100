@@ -90,6 +90,12 @@ p <- ext_fit %>%
         panel.grid.minor = element_blank())
 print(p)
 
+#---------------------EXPORT PLOT ----------------------------------
+
+CairoPNG("output/bayes-plot.png", 800, 600)
+print(p)
+dev.off()
+
 #---------------------EXTRACT PRIORS FOR FUTURE MODEL --------------
 
 alpha_posterior <- ext_fit$alpha
